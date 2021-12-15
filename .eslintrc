@@ -1,0 +1,24 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+        "linebreak-style": 0,
+        "prefer-const": 0,
+        "prefer-template": 0,
+        "no-debugger": 0,
+        "@typescript-eslint/no-inferrable-types": 0,
+        "@typescript-eslint/ban-types": 0,
+        "@typescript-eslint/no-empty-function": 0,
+        "no-case-declarations": 0,
+        "@typescript-eslint/no-var-requires": 0,
+        "no-useless-catch": 0
+    }
+  }

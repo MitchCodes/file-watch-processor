@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: <secret-name>
+type: Opaque
+stringData:
+  appInsightsKey: {{appInsightsKey}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <deployment-name>
+spec:
+  selector:
+    matchLabels:
+      app: <app-label>
+      tier: <app-tier>
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: <app-label>
+        tier: <app-tier>
+    spec:
+      tolerations:
+      - key: "{{toleranceKey}}"
+        operator: "Equal"
+        value: "{{toleranceValue}}"
+        effect: "NoSchedule"
+      - key: "{{toleranceKey}}"
+        operator: "Equal"
+        value: "{{toleranceValue}}"
+        effect: "NoExecute"
+      nodeName: {{nodeToRunOn}}
+      containers:
+      - name: <container-name>
+        image: <image-name>
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: "{{botCpuRequest}}"
+            memory: "{{botMemRequest}}"
+        env:
+        - name: logLevel
+          value: "info"
+        - name: logToFile
+          value: "false"
+        - name: logAppInsightsInstrumentKey
+          valueFrom:
+            secretKeyRef:
+              name: <secret-name>
+              key: appInsightsKey
+      imagePullSecrets:
+      - name: <registry-secret>

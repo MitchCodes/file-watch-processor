@@ -1,0 +1,7 @@
+node_modules
+.vscode
+logs
+tmp
+__tests__/tmp
+out
+data

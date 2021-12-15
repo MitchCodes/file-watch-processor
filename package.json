@@ -1,0 +1,61 @@
+{
+  "name": "file-watch-processor",
+  "version": "0.0.1",
+  "description": "Application that monitors a configurable input folder to process files",
+  "engineStrict": true,
+  "engines": {
+    "node": ">= 16.6.0"
+  },
+  "main": "",
+  "devDependencies": {
+    "@types/jest": "~27.0.3",
+    "@types/nconf": "~0.0.37",
+    "@types/node": "~16.6.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "eslint": "^7.32.0",
+    "file-loader": "~6.2.0",
+    "gulp": "^4.0.2",
+    "gulp-merge-json": "^2.1.1",
+    "jest": "~27.0.6",
+    "ts-jest": "~27.0.1",
+    "ts-loader": "~8.1.0",
+    "tsutils": "~3.21.0",
+    "typescript": "~4.3.5"
+  },
+  "scripts": {
+    "clean": "rimraf coverage build tmp logs out data",
+    "build": "tsc -p tsconfig.development.json && gulp",
+    "build-prod": "tsc -p tsconfig.release.json && gulp --gulpfile gulpfile.prod.js",
+    "build-npm": "tsc --project tsconfig.release.json",
+    "lint": "eslint . --ext .ts",
+    "pretest": "npm run lint --force",
+    "test": "npm run test-only",
+    "test-only": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test-basic": "jest",
+    "test-example": "jest --rootDir=./ --config=./jest/jest.example.config.js",
+    "start": "node ./build/main.js"
+  },
+  "author": "Mitch Chiles <mitchchiles@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MitchCodes/file-watch-processor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MitchCodes/file-watch-processor/issues"
+  },
+  "homepage": "https://github.com/MitchCodes/file-watch-processor",
+  "dependencies": {
+    "applicationinsights": "1.3.1",
+    "moment": "^2.21.0",
+    "nconf": "~0.10.0",
+    "tslib": "~2.3.1",
+    "winston": "3.2.1",
+    "winston-daily-rotate-file": "3.8.0",
+    "winston-transport": "4.3.0",
+    "tsdatautils-core": "~0.1.7",
+    "tsdatautils-memorycache": "~0.0.7",
+    "tsdatautils-azuretablestorage": "~0.1.2"
+  }
+}
