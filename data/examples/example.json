@@ -13,8 +13,10 @@
             "watchRootFolder": true,
             "recursive": false,
             "createSubfolders": false,
+            "processInitial": false,
             "watchProcessInputs": [
                 {
+                    "id": "1440p",
                     "processorId": "handbrake",
                     "outputFilePath": "C:/Example/Output",
                     "convertPreset": "Vimeo YouTube HQ 1440p60 2.5K",

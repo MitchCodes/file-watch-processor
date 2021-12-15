@@ -6,6 +6,7 @@ export class FileWatcher {
     public watchRootFolder: boolean;
     public recursive: boolean;
     public createSubfolders: boolean;
+    public processInitial: boolean;
     public watchProcessors: FileWatcherProcessor[];
 
     public constructor() {
@@ -32,6 +33,7 @@ export class FileWatcherConfiguration {
     public watchRootFolder: boolean = true;
     public recursive: boolean = false;
     public createSubfolders: boolean = false;
+    public processInitial: boolean = false;
     public watchProcessInputs: FileWatchProcessInput[] = [];
 
     public constructor() {

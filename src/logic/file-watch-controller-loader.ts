@@ -5,6 +5,7 @@ import { ILogger } from 'tsdatautils-core';
 import { FileWatchController, FileWatchControllerConfiguration } from '../models/file-watch-controller';
 import { FileWatchControllerConfigFactory } from './factories/config/file-watch-controller-factory';
 import { FileWatchControllerFactory } from './factories/file-watch-controller.factory';
+import { DirectoryFiles, FileHelper } from './helpers/file.helper';
 
 export class FileWatchControllerLoader {
     private logger: ILogger;
@@ -25,11 +26,12 @@ export class FileWatchControllerLoader {
         let fileWatchControllerConfigFactory: FileWatchControllerConfigFactory = new FileWatchControllerConfigFactory();
         let fileWatchControllerFactory: FileWatchControllerFactory = new FileWatchControllerFactory(this.logger, this.conf);
 
-        let allConfigFiles: string[] = this.getFilesRecursive(configFilesFolder);
-        this.logger.debug('Found ' + allConfigFiles.length + ' file watch controller(s).');
+        let fileHelper: FileHelper = new FileHelper(this.logger, this.conf);
+        let allConfigFiles: DirectoryFiles = fileHelper.getFilesRecursive(configFilesFolder);
+        this.logger.debug('Found ' + allConfigFiles.files.length + ' file watch controller(s).');
 
         let fileWatchControllers: FileWatchController[] = [];
-        for (let configFile of allConfigFiles) {
+        for (let configFile of allConfigFiles.files) {
             let configJson: string = readFileSync(configFile, {
                 encoding: 'utf8'
             });
@@ -44,23 +46,5 @@ export class FileWatchControllerLoader {
         }
 
         return fileWatchControllers;
-    }
-
-    private getFilesRecursive(directory, allFiles: string[] = null): string[] {
-        if (allFiles === null) {
-            allFiles = [];
-        }
-
-        readdirSync(directory).forEach(file => {
-            const fullPath = path.join(directory, file);
-            if (statSync(fullPath).isDirectory()) {
-                return this.getFilesRecursive(fullPath, allFiles);
-            }
-            else {
-                return allFiles.push(fullPath);
-            }
-        });
-
-        return allFiles;
     }
 }

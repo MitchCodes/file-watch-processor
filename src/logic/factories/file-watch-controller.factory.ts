@@ -40,6 +40,7 @@ export class FileWatchControllerFactory {
             fileWatcher.createSubfolders = watcherConfig.createSubfolders;
             fileWatcher.recursive = watcherConfig.recursive;
             fileWatcher.watchRootFolder = watcherConfig.watchRootFolder;
+            fileWatcher.processInitial = watcherConfig.processInitial;
 
             fileWatcher.watchProcessors = [];
 

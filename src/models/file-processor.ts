@@ -6,6 +6,7 @@ export class FileInput {
 }
 
 export class FileWatchProcessInput {
+    public id: string;
     public processorId: string;
 }
 
