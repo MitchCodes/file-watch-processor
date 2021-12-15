@@ -12,6 +12,18 @@ export class MainController {
 
         this.cacheService = cacheService;
 
+        // todo: main logic loop:
+        // load FileWatchController from data configuration
+        // based on watchers, have infinite loop for watching files
+        // if new file event, run processor 1 at a time generically
+        // if new folder event, run processor 1 at a time generically (if recursive?). file processor class have new folder event in interface. needs File Watch Processor Input as well
+
+
+        // todo: Docker setup for linux handbrake. need to install handbrake using apt
+        // Docker setup for mounting data configuration file
+        // Docker setup for mounting watched folders
+        // Docker setup documented in README
+
         return;
     }
 }

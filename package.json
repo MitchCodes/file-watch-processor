@@ -56,6 +56,7 @@
     "winston-transport": "4.3.0",
     "tsdatautils-core": "~0.1.7",
     "tsdatautils-memorycache": "~0.0.7",
-    "tsdatautils-azuretablestorage": "~0.1.2"
+    "tsdatautils-azuretablestorage": "~0.1.2",
+    "handbrake-js": "~6.0.0"
   }
 }
