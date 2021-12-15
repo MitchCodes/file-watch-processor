@@ -45,4 +45,7 @@ config.prod.json
 
 out/
 
-data/
+!data/
+
+data/*
+!data/examples/

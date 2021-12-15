@@ -36,6 +36,6 @@ export enum FileProcessorType {
 }
 
 export class FileProcessorConfiguration {
-    public id: string;
-    public type: FileProcessorType;
+    public id: string = '';
+    public type: FileProcessorType = FileProcessorType.HandbrakeVideoConverter;
 }

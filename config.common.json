@@ -1,5 +1,6 @@
 {
     "logLevel": "debug",
     "logToFile": "true",
-    "logAppInsightsInstrumentKey": ""
+    "logAppInsightsInstrumentKey": "",
+    "controllersFolder": "./data"
 }

@@ -1,7 +1,13 @@
-import { FileProcessorConfiguration } from "./file-processor";
-import { FileWatcherConfiguration } from "./file-watcher";
+import { FileProcessor, FileProcessorConfiguration } from "./file-processor";
+import { FileWatcher, FileWatcherConfiguration } from "./file-watcher";
 
 export class FileWatchController {
-    public processors: FileProcessorConfiguration[];
-    public watchers: FileWatcherConfiguration[];
+    public processors: FileProcessor[];
+    public watchers: FileWatcher[];
+}
+
+export class FileWatchControllerConfiguration {
+    public enabled: boolean = false;
+    public processors: FileProcessorConfiguration[] = [];
+    public watchers: FileWatcherConfiguration[] = [];
 }

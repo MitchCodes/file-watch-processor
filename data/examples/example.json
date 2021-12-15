@@ -1,0 +1,27 @@
+{
+    "enabled": false,
+    "processors": [
+        {
+            "id": "handbrake",
+            "type": "HandbrakeVideoConverter"
+        }
+    ],
+    "watchers": [
+        {
+            "id": "example-watcher",
+            "path": "C:/Example/Input",
+            "watchRootFolder": true,
+            "recursive": false,
+            "createSubfolders": false,
+            "watchProcessInputs": [
+                {
+                    "processorId": "handbrake",
+                    "outputFilePath": "C:/Example/Output",
+                    "convertPreset": "Vimeo YouTube HQ 1440p60 2.5K",
+                    "lastSecondsToKeep": 120,
+                    "debugLogProgress": false
+                }
+            ]
+        }
+    ]
+}
