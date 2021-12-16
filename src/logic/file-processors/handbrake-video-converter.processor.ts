@@ -2,6 +2,7 @@ import { Provider } from "nconf";
 import { ILogger } from "tsdatautils-core";
 import { FileInput, FileProcessFilters, FileProcessor, FileProcessorType, FileProcessResult, FileWatchProcessInput } from "../../models/file-processor";
 import { HandbrakeVideoConverterWatchProcessInput } from "../../models/file-watch-processor-input/handbrake-video-converter.input";
+import { InterpolationHelper } from "../helpers/interpolation.helper";
 
 export class HandbrakeVideoConverterFileProcessor implements FileProcessor {
     private hbjs: any;
@@ -70,8 +71,7 @@ export class HandbrakeVideoConverterFileProcessor implements FileProcessor {
     private convertFile(fileInput: FileInput, watcherInput: HandbrakeVideoConverterWatchProcessInput, videoLengthSeconds: number): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             let hbjsSpawnSettings: any = {
-                input: fileInput.path, 
-                output: watcherInput.outputFilePath, 
+                input: fileInput.path,
                 'preset': watcherInput.convertPreset
             };
 
@@ -79,6 +79,10 @@ export class HandbrakeVideoConverterFileProcessor implements FileProcessor {
                 let startSeconds: number = videoLengthSeconds - watcherInput.lastSecondsToKeep;
                 hbjsSpawnSettings['start-at'] = 'seconds:' + startSeconds;
             }
+
+            let interpolationHelper: InterpolationHelper = new InterpolationHelper();
+            let outputInterpolated: string = interpolationHelper.interpolateInput(watcherInput.outputFilePath, fileInput.interpolationData);
+            hbjsSpawnSettings['output'] = outputInterpolated;
 
             let job: any = this.hbjs.spawn(hbjsSpawnSettings)
                 .on('error', err => {

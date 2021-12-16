@@ -1,8 +1,10 @@
 import { Provider } from "nconf";
 import { ILogger } from "tsdatautils-core";
+import { BasicDictionary } from "./basicdictionary";
 
 export class FileInput {
     public path: string;
+    public interpolationData: BasicDictionary<string>;
 }
 
 export class FileWatchProcessInput {
