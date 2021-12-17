@@ -20,11 +20,6 @@ export class MainController {
         let fileWatchControllerLoader: FileWatchControllerLoader = new FileWatchControllerLoader(logger, conf);
         let fileWatchControllers: FileWatchController[] = await fileWatchControllerLoader.getFileWatchControllers();
 
-        // todo: main logic loop:
-        // based on watchers, have infinite loop for watching files
-        // if new file event, run processor 1 at a time generically
-        // if new folder event, run processor 1 at a time generically (if recursive?). file processor class have new folder event in interface. needs File Watch Processor Input as well
-
         if (!fileWatchControllers) {
             this.logger.info('No file watch controllers. Stopping application.');
             return;
@@ -32,7 +27,7 @@ export class MainController {
 
         let fileWatchProcessor: FileWatchProcessor = new FileWatchProcessor(this.logger, this.conf);
         await fileWatchProcessor.processWatchControllers(fileWatchControllers);
-
+        
         // todo: Docker setup for linux handbrake. need to install handbrake using apt
         // Docker setup for mounting data configuration file
         // Docker setup for mounting watched folders
