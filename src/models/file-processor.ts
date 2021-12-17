@@ -10,10 +10,20 @@ export class FileInput {
 export class FileWatchProcessInput {
     public id: string;
     public processorId: string;
+    public removeFileAfterProcess: boolean;
+}
+
+export enum FileProcessResultStatus {
+    Success = 0,
+    Error = 1,
 }
 
 export class FileProcessResult {
+    public status: FileProcessResultStatus;
 
+    public constructor() {
+        this.status = FileProcessResultStatus.Success;
+    }
 }
 
 export class FileProcessFilters {
